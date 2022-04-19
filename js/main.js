@@ -1,74 +1,63 @@
-let list = document.querySelector('.data__list');
-let arr = []
+let cart_list = document.querySelector('.data__list');
+function renderHTML() {
+  fetch("https://reqres.in/api/users")
+    .then((res) => res.json())
 
-function dataFunc() {
-  let requst = new XMLHttpRequest();
-  let url = "https://reqres.in/api/users"
-
-  requst.open("GET", url);
-
-  requst.onload = function () {
-    let outData = JSON.parse(requst.responseText);
-    renderHTML(outData);
-  }
-
-  requst.send();
-} dataFunc()
-
-
-function renderHTML(data) {
-  data.data.forEach(element => {
-    let li = document.createElement('li')
-    li.className = "data__item"
-    li.innerHTML = `
-            <div class="data__item_box itmbox">
-              <div class="itmbox__img_name">
-                <div class="itmbox__img-box">
-                  <img class="itmbox__img" src="${element.avatar}" alt="img">
+    .then((dat) => {
+      console.log(dat.data);
+    dat.data.forEach((el)=> {
+      console.log(el);
+        let li = document.createElement('li')
+        li.className = "data__item"
+        li.innerHTML = `
+            <div class="data__item_box item">
+              <div class="item__img_name">
+                <div class="item__img-box">
+                  <img class="item__img" src="${el.avatar}" alt="img">
                 </div>
 
-                <div class="itmbox__name-box">
-                  <p class="itmbox__name">${element.last_name}</p>
-                  <p class="itmbox__name-tit">${element.first_name}</p>
+                <div class="item__name-box">
+                  <p class="item__name">${el.last_name}</p>
+                  <p class="item__name-tit">${el.first_name}</p>
                 </div>
               </div>
 
-              <div class="itmbox__content">
-                <ul class="itmbox__left_list">
-                  <li class="itmbox__left_item">
-                    <p class="itmbox__left_tit">Company</p>
-                    <p class="itmbox__right_tit">Epam</p>
+              <div class="item__content">
+                <ul class="item__left_list">
+                  <li class="item__left_item">
+                    <p class="item__left_tit">Company</p>
+                    <p class="item__right_tit">Epam</p>
                   </li>
-                  <li class="itmbox__left_item">
-                    <p class="itmbox__left_tit">Email</p>
-                    <p class="itmbox__right_tit">${element.email}</p>
+                  <li class="item__left_item">
+                    <p class="item__left_tit">Email</p>
+                    <p class="item__right_tit">${el.email}</p>
                   </li>
-                  <li class="itmbox__left_item">
-                    <p class="itmbox__left_tit">Phone</p>
-                    <p class="itmbox__right_tit">999-876-654-321</p>
+                  <li class="item__left_item">
+                    <p class="item__left_tit">Phone</p>
+                    <p class="item__right_tit">999-876-654-321</p>
                   </li>
-                  <li class="itmbox__left_item">
-                    <p class="itmbox__left_tit">Website</p>
-                    <p class="itmbox__right_tit">kale.biz</p>
+                  <li class="item__left_item">
+                    <p class="item__left_tit">Website</p>
+                    <p class="item__right_tit">kale.biz</p>
                   </li>
                 </ul>
               </div>
             </div>
             <button class="removBtn">Remove</button>`;
 
-    list.appendChild(li)
-    arr.push(element)
-  });
+        cart_list.appendChild(li)
+      });
 
-  let items = document.querySelectorAll('.data__item');
-  let btns = document.querySelectorAll('.removBtn');
-  items.forEach((item, inx) => {
-    btns.forEach((btn, btninx) => {
-      btn.addEventListener('click', () => {
-        if (btninx + 1 == inx + 1) {
-          item.remove()
-        }
+      let carts = document.querySelectorAll('.data__item');
+      let btns = document.querySelectorAll('.removBtn');
+      carts.forEach((item, i) => {
+        btns.forEach((elem, idx) => {
+          elem.addEventListener('click', () => {
+            if (idx + 1 == i + 1) {
+              item.remove()
+            }
+          })
+        })
       })
     })
-  })
-}
+} renderHTML()
