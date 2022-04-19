@@ -20,7 +20,6 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  transition: all 0.3s ease;
 }
 
 .data__item {
@@ -29,7 +28,6 @@
   height: auto;
   padding: 20px;
   opacity: 0;
-  transition: all 0.25s ease;
 
   &:hover button {
     opacity: 1;
@@ -43,9 +41,8 @@
   height: 100%;
   background: #f9f9f9;
   border: 1px solid rgb(156, 156, 156);
-  border-radius: 10px;
+  border-radius: 5px;
   overflow: hidden;
-  transition: all 0.3s ease;
 }
 
 .itmbox__img_name {
@@ -75,7 +72,7 @@
 .itmbox__name {
   font-size: 22px;
   line-height: 22px;
-  font-weight: 600;
+  font-weight: 500;
   font-family: sans-serif;
   text-transform: uppercase;
   color: #333;
@@ -150,6 +147,6 @@
 
   &:hover {
     opacity: 0;
-    background: rgb(255, 0, 0);
+    background: rgb(108, 0, 0);
   }
 }
